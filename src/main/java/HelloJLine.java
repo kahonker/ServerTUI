@@ -1,28 +1,26 @@
 import org.jline.reader.*;
 import org.jline.terminal.*;
 
+import java.io.IOException;
+import java.io.Reader;
+
 public class HelloJLine {
-    public static void main(String[] args) {
-        try {
-            // Create a terminal
-            Terminal terminal = TerminalBuilder.builder()
-                    .system(true)
-                    .build();
+    public static void main(String[] args) throws IOException {
+        Terminal terminal = TerminalBuilder.builder().build();
 
-            terminal.
+        // Get the terminal reader
+        Reader reader = terminal.reader();
 
-            // Create line reader
-            LineReader reader = LineReaderBuilder.builder()
-                    .terminal(terminal)
-                    .build();
+        terminal.writer().println("Press any key (or 'q' to quit):");
+//        terminal.writer().flush();
 
-            // Prompt and read input
-            String line = reader.readLine("JLine > ");
-
-            // Print the result
-            System.out.println("You entered: " + line);
-        } catch (Exception e) {
-            e.printStackTrace();
+        // Read characters
+        int c;
+        while ((c = reader.read()) != 'q') {
+            terminal.writer().printf("You pressed: %c (ASCII: %d)%n", (char) c, c);
+            terminal.writer().flush();
         }
+
+        terminal.close();
     }
 }
