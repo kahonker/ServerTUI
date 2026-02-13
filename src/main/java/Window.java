@@ -1,7 +1,7 @@
 public class Window {
     int width;
     int height;
-    String contents = "";
+    public String contents = "";
 
     public Window(int width, int height){
         this.width = width;

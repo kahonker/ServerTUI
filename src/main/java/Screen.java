@@ -14,12 +14,13 @@ public class Screen {
         logs = new Window(width/2, height){
             @Override
             public void _update(){
-
+                this.contents = "";
             }
         };
     }
 
-    public String getScreen(){
-
+    public String[] getScreen(){
+        String [] log = logs.getContents();
+        return log;
     }
 }
