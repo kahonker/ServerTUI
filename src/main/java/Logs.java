@@ -12,7 +12,8 @@ public class Logs extends Window{
 
     @Override
     public void _update() {
-        String prev = contents;
+        String prev = prevContents;
+        prevContents = contents;
         contents = "[19:02:32] [Server thread/INFO] [Server Utilities]: Deleting 1 old backups\n" +
                 "[19:02:32] [Server thread/INFO] [Server Utilities]: Deleted old backup: ./backups/2026-02-08-16-51-32.zip\n" +
                 "[19:08:23] [Thread-19/INFO] [Server Utilities]: Backing up 1513 files...\n" +
@@ -24,6 +25,5 @@ public class Logs extends Window{
                 "[19:08:31] [Server thread/INFO] [Server Utilities]: Deleting 1 old backups\n" +
                 "[19:08:31] [Server thread/INFO] [Server Utilities]: Deleted old backup: ./backups/2026-02-08-16-57-32.zip\n";
         dirty = !contents.equals(prevContents);
-        prevContents = prev;
     }
 }
